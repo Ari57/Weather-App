@@ -1,4 +1,4 @@
-# Weather-App
+# Weather App
 ## Introduction
 
 An application to view weather information
