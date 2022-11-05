@@ -1,0 +1,11 @@
+Frontend Side
+
+• Contains text boxes for users to enter data
+• Can either send a request to an API or DB
+• Displays final result
+
+Backend Side
+
+• Calls weather API
+• Formats data
+• Sends final result back to Frontend

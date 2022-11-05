@@ -1,0 +1,24 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "An application to view weather information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ari57/Weather-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ari57/Weather-App/issues"
+  },
+  "homepage": "https://github.com/Ari57/Weather-App#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "pg": "^8.8.0"
+  }
+}
