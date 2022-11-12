@@ -4,23 +4,28 @@ const app = express()
 const port = 3000
 const db = require("./queries")
 
-app.use(bodyParser.json())
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-)
+var urlencodedParser = bodyParser.urlencoded({ extended: false});
 
-app.get("/", (request, response) => {
-    response.json({info: "Node.js"})
+
+app.use(express.static('public'));
+app.get('/index.html', function(req, res){
+    res.sendFile(_dirname + "/" + "index.html");
 })
 
-app.get("/users", db.getUsers)
-app.post("/users", db.addLocation)
-app.post("/users/:id", db.updateUser)
+app.post('/location', urlencodedParser, function(req, res){
+    response = { LocationName : req.body.locationName };
+    console.log(response);
+    console.log(req.body.locationName)
+    res.end(JSON.stringify(response));
+})
+
+app.get('/location/get', urlencodedParser, function(req, res){
+    var receivedLocation = req.query.locationName
+})
+
+//app.get("/users", db.getLocation)
+//app.post("/location/get", db.addLocation)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)
 })
-
-
