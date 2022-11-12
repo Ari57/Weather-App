@@ -1,7 +1,7 @@
 //const Pool = require("pg").Pool
-const pool = require("./credentials")
+const {pool: pool} = require("./credentials")
 
-const getUsers = (request, response) => {
+const getLocation = (request, response) => {
     pool.query("SELECT start, dest FROM JOURNEYLOCATIONS", (error, results) => {
         if (error) {
             throw error
@@ -11,33 +11,21 @@ const getUsers = (request, response) => {
 }
 
 const addLocation = (request, response) => {
-    const {location} = request.body
-
-    pool.query('INSERT INTO start (location) VALUES ($1) ', [location], (error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(201).send("Location added")
-    })
-}
-
-const updateUser = (request, response) => {
-    const id = parseInt(request.params.id)
-    const { name, email } = request.body
   
     pool.query(
-      'INSERT INTO JOURNEYLOCATIONS (start, dest) VALUES($1, $1)', ["ho"],
+      'INSERT INTO JOURNEYLOCATIONS (start, dest) VALUES($1, $1)', [request.body.locationName],
       (error, results) => {
         if (error) {
           throw error
         }
-        response.status(200).send(`User modified with ID: ${id}`)
+        response.status(200).send(`User modified`)
       }
     )
 }
 
+
+
 module.exports = {
-    getUsers,
+    getLocation,
     addLocation,
-    updateUser
 }
