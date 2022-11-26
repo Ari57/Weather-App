@@ -1,0 +1,5 @@
+Add fail page and reroute button - done
+Connect to a weather API and get JSON response - done
+
+Access specific part of JSON - Next sat
+Use a Socket to send form data between NodeJS/Java - Next Sat
