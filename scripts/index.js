@@ -25,14 +25,16 @@ app.get("/fail", function (req, res) {
 
 app.post('/location', urlencodedParser, (req, res) => {
 
-    io.on("error", (error) => {
+    io.on("error", (err) => {
     res.redirect("/fail")
     throw err
   })
 
-    io.emit("message", req.body.locationName)
+    io.emit("message", req.body.locationName + "\n")
     res.redirect("/success")  
   })
+
+  
 
 
 app.listen(3000, () => {

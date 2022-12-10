@@ -1,2 +1,5 @@
 Server part of socket is setup
-Now need to create a client in Java
+I've also setup the client in Java and setup Maven
+
+
+I'll work reading the weather api response next Saturday
