@@ -28,7 +28,7 @@ public class WeatherRequest {
     }
 
     public static void main(String[] args) throws Exception {
-        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat=51.5072&lon=0.1276&appid=6087317a0d56e5bb8964f14c3f8a2945&units=metric");
+        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat=51.5072&lon=0.1276&appid={AppID}&units=metric");
     }
     
 }
