@@ -4,26 +4,32 @@ const app = express()
 var path = require("path")
 const socketio = require("socket.io")
 const server = app.listen(8080, () => {
-    console.log("Server is running")
+    console.log("Server is running on port 8080")
 })
 const io = socketio(server)
 
-io.on("connection", (socket) => {
-    console.log("Connected to client")
-})
+
+io.on("connection", socket => {
+  console.log("A client connected");
+  
+  socket.on("message", message => {
+    console.log("Received message from client: " + message);
+  });
+  
+});
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false});
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.get("/success", function (req, res) {
-    res.sendFile(path.join(__dirname, '../public', 'success.html'));
+    res.sendFile(path.join(__dirname, "../public", "success.html"));
 })
 
 app.get("/fail", function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'fail.html'));
+  res.sendFile(path.join(__dirname, "../public", "fail.html"));
 })
 
-app.post('/location', urlencodedParser, (req, res) => {
+app.post("/location", urlencodedParser, (req, res) => {
 
     io.on("error", (err) => {
     res.redirect("/fail")
@@ -34,9 +40,5 @@ app.post('/location', urlencodedParser, (req, res) => {
     res.redirect("/success")  
   })
 
-  
-
-
 app.listen(3000, () => {
-    console.log("App running on port 3000")
-})
+})    

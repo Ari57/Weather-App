@@ -1,12 +1,15 @@
 package com.example;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.HttpURLConnection;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 public class WeatherRequest {
-    public static void getRequest(String urlToRead) throws Exception {
+    
+    public static Object getRequest(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -15,17 +18,17 @@ public class WeatherRequest {
             for (String line; (line = reader.readLine()) != null;) {
                 result.append(line);
             }
-        }
-        //JSONObject jsonObj = new JSONObject(result.toString());
+        } 
+
         JSONObject jsonObject = (JSONObject) JSONValue.parse(result.toString());
-        //return result.toString();
-        //System.out.println(jsonObject.get("alerts"));
-        Object results = jsonObject.get("current");
-        System.out.println(results);
+        JSONObject results = (JSONObject) jsonObject.get("current");
+        Object temperature = results.get("temp");
+        return temperature;
+        // System.out.println(results);
     }
 
     public static void main(String[] args) throws Exception {
-        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat=51.5072&lon=0.1276&appid={AppID}&units=metric");
+        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat=51.5072&lon=0.1276&appid=6087317a0d56e5bb8964f14c3f8a2945&units=metric");
     }
     
 }
