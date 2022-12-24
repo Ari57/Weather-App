@@ -23,12 +23,18 @@ public class WeatherRequest {
         JSONObject jsonObject = (JSONObject) JSONValue.parse(result.toString());
         JSONObject results = (JSONObject) jsonObject.get("current");
         Object temperature = results.get("temp");
+        System.out.println(temperature);
         return temperature;
         // System.out.println(results);
     }
 
     public static void main(String[] args) throws Exception {
-        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat=51.5072&lon=0.1276&appid={AppID}&units=metric");
+        Object result[] = Geocoding.geoCode();
+        String WeatherKey = APIKeys.WeatherApiKey;
+        Object lng = result[0]; // long
+        Object lat = result[1]; // lat
+        getRequest("https://api.openweathermap.org/data/3.0/onecall?lat="+lat+"&lon="+lng+"&appid="+WeatherKey+"&units=metric");
+        
     }
     
 }

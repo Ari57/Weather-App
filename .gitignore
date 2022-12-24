@@ -27,4 +27,11 @@ node_modules
 
 target
 
+credentials.txt
+scripts/credentials.js
+scripts/client.js
+Backend/backend/src/main/java/com/example/Unused
+Backend/backend/src/main/java/com/example/APIKeys.java
+
+
 
