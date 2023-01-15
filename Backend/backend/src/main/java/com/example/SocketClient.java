@@ -1,5 +1,4 @@
 package com.example;
-
 import java.net.URISyntaxException;
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -7,11 +6,14 @@ import io.socket.emitter.Emitter;
 
 public class SocketClient {
     public Object message = "";
-    
-    public Object client() throws URISyntaxException {
-        
-        Socket socket = IO.socket("http://localhost:8080");
-        socket.emit("message", "message test");
+    public Socket socket = IO.socket("http://localhost:8080");
+    public SocketClient() throws URISyntaxException {}
+
+    public void SendMessage(String ClientMessage) throws URISyntaxException {
+        socket.emit("temp", ClientMessage);
+    }
+
+    public Object client() throws URISyntaxException, InterruptedException {
 
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
 
@@ -20,22 +22,22 @@ public class SocketClient {
                 System.out.println("Connected to server!");
             }
         });
-        socket.on("message", new Emitter.Listener() {
+        socket.on("msg", new Emitter.Listener() {
             
             @Override
             public void call(Object... args) {
                 message = args[0];
+                System.out.println(message);
+                // System.out.println(message);
             }
             
         });
         socket.connect();
-        while (message == "") {
-            System.out.println("Message is empty"); // TODO clear this up
-        } 
-            return message;
+        
+        return message;
     }
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) throws URISyntaxException, InterruptedException {
         new SocketClient().client();
     }
 }

@@ -36,7 +36,7 @@ app.post("/location", urlencodedParser, (req, res) => {
     throw err
   })
 
-    io.emit("message", req.body.locationName + "\n")
+    io.emit("msg", req.body.locationName)
     res.redirect("/success")  
   })
 
