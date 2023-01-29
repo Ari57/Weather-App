@@ -11,13 +11,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 public class Geocoding {
-    public static Object[] geoCode() throws URISyntaxException, Exception {
+    public static Object[] geoCode(Object message) throws URISyntaxException, Exception {
 
-    SocketClient client = new SocketClient();
-    client.client();
-    
     String AppID = APIKeys.GeocodingApiKey;
-    String urlToRead = "https://maps.googleapis.com/maps/api/geocode/json?key="+AppID+"&address="+client.message;
+    String urlToRead = "https://maps.googleapis.com/maps/api/geocode/json?key="+AppID+"&address="+message;
 
     StringBuilder result = new StringBuilder();
         URL url = new URL(urlToRead);
@@ -40,7 +37,9 @@ public class Geocoding {
     }
 
     public static void main(String[] args) throws URISyntaxException, Exception {
-        Object result[] = geoCode();
+        SocketClient client = new SocketClient();
+        client.client();
+        Object result[] = geoCode(client.message);
         System.out.println(result[0]); // long
         System.out.println(result[1]); // lat
 

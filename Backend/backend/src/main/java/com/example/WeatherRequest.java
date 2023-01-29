@@ -29,7 +29,10 @@ public class WeatherRequest {
     }
 
     public static void main(String[] args) throws Exception {
-        Object result[] = Geocoding.geoCode();
+        SocketClient client = new SocketClient();
+        client.client();
+        
+        Object result[] = Geocoding.geoCode(client.message);
         String WeatherKey = APIKeys.WeatherApiKey;
         Object lng = result[0]; // long
         Object lat = result[1]; // lat

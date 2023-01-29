@@ -28,13 +28,17 @@ public class SocketClient {
             public void call(Object... args) {
                 message = args[0];
                 System.out.println(message);
-                // System.out.println(message);
             }
             
         });
         socket.connect();
         
+        while (message == "") {
+            System.out.println("Waiting for message");
+            Thread.sleep(3000);
+        } 
         return message;
+        
     }
 
     public static void main(String[] args) throws URISyntaxException, InterruptedException {
