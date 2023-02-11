@@ -1,7 +1,6 @@
 <head>
   <title>Weather App</title>
 
-
 </head>
 
 <header>
@@ -13,10 +12,11 @@
 </header>
 
 <body>
-<form method="POST" action="http://localhost:3000/location/" target="_blank">
+<form id="myForm" method="POST" action="http://localhost:3000/location/" target="_blank">
     <div class="form-group">
       <label for="LocationLabel">Location</label>
       <input id="locationID" name="locationName" type="text" class="form-control"  placeholder="Enter location" required>
+      <input type="text" id="temperature" name="temperature" readonly />
     </div>
     <button type="submit" id="submitbutton" class="btn btn-primary">Submit</button>
   </form>

@@ -9,8 +9,8 @@ public class SocketClient {
     public Socket socket = IO.socket("http://localhost:8080");
     public SocketClient() throws URISyntaxException {}
 
-    public void SendMessage(String ClientMessage) throws URISyntaxException {
-        socket.emit("temp", ClientMessage);
+    public void SendMessage(Object ClientMessage) throws URISyntaxException {
+        socket.emit("temperatureMsg", ClientMessage);
     }
 
     public Object client() throws URISyntaxException, InterruptedException {
